@@ -1,5 +1,4 @@
 /-  *post
-=,  post
 |%
 ::
 :: market data types
@@ -16,24 +15,21 @@
     :: =signature
     :: reviews=(list post) :: from graph-store
   ==
-::  might want to include more info? tbd...
-+$  marketplace  (set item)
 ::
 ::  actions
 ::
-+$  client-actions
++$  client-action
   $%
-    [%subcribe host=ship]
+    [%subscribe host=ship]
     [%leave host=ship]
     [%make-offer item=uid] :: should be an index from graph store. fix later
     [%remove-offer item=uid]
   ==
-+$  server-actions
++$  server-action
   $%
     [%add-item =item]
     [%remove-item index=uid] :: item ID. index=(list @) from graph store)
     [%accept-offer offer=uid]
     [%reject-offer offer=uid]
-    [%remove-market]
-    ==
+  ==
 --
