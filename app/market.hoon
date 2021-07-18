@@ -14,9 +14,11 @@
 =|  state-0
 =*  state  -
 ^-  agent:gall
+=<
 |_  =bowl:gall
 +*  this      .
     default   ~(. (default-agent this %|) bowl)
+    helper        ~(. +> bowl)
 ::
 ++  on-init
   ^-  (quip card _this)
@@ -53,10 +55,15 @@
     ==
       %market-server-action
       ~&  >>>  !<(server-action vase)
-      `this
+      =^  cards  state
+      (handle-server-action:helper !<(server-action vase))
+      [cards this]
+
       %market-client-action
       ~&  >>>  !<(client-action vase)
-      `this
+      =^  cards  state
+      (handle-client-action:helper !<(client-action vase))
+      [cards this]
   ==
 ++  on-watch  on-watch:default
 ++  on-leave  on-leave:default
@@ -71,4 +78,34 @@
     `this
   ==
 ++  on-fail   on-fail:default
+--
+::  helper core
+|_  bowl=bowl:gall
+++  handle-server-action
+  |=  action=server-action
+  ^-  (quip card _state)
+  ~&  >>>  'action'
+  ?-  -.action
+    %add-item
+  ~&  >>>  'add item'  `state
+    %remove-item
+  ~&  >>>  'remove item'  `state
+    %accept-offer
+  ~&  >>>  'accept item'  `state
+    %reject-offer
+  ~&  >>>  'reject item'  `state
+  ==
+++  handle-client-action
+  |=  action=client-action
+  ^-  (quip card _state)
+  ?-  -.action
+    %subscribe
+  ~&  >>>  'subscribe'  `state
+    %leave
+  ~&  >>>  'leave'  `state
+    %make-offer
+  ~&  >>>  'make-offer'  `state
+    %remove-offer
+  ~&  >>>  'remove offer'  `state
+  ==
 --
