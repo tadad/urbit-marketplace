@@ -5,7 +5,7 @@
   $%  state-0
   ==
 ::
-+$  state-0  [%0 items=(set item)]
++$  state-0  [%0 items=(map index item)]
 ::
 +$  card  card:agent:gall
 ::
@@ -18,13 +18,13 @@
 |_  =bowl:gall
 +*  this      .
     default   ~(. (default-agent this %|) bowl)
-    helper        ~(. +> bowl)
+    helper    ~(. +> bowl)
 ::
 ++  on-init
   ^-  (quip card _this)
   ~&  >  'on-init'
   ~&  >>>  '%connect Eyre to ~lifecycle'
-  :_  this(state [%0 (sy *(list item))])
+  :_  this(state [%0 *(map index item)])
     :~
       [%pass /bind %arvo %e %connect [~ /'~lifecycle'] %lifecycle]
     ==
@@ -87,7 +87,9 @@
   ~&  >>>  'action'
   ?-  -.action
     %add-item
-  ~&  >>>  'add item'  `state
+  ~&  >>>  'add item'
+  =.  items.state  (~(put by items.state) index.item.action item.action)
+  `state
     %remove-item
   ~&  >>>  'remove item'  `state
     %accept-offer
