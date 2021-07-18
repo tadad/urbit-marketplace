@@ -86,14 +86,18 @@
   ^-  (quip card _state)
   ~&  >>>  'action'
   ?-  -.action
+  ::
     %add-item
-  ~&  >>>  'add item'
   =.  items.state  (~(put by items.state) index.item.action item.action)
   `state
+  ::
     %remove-item
-  ~&  >>>  'remove item'  `state
+  =.  items.state  (~(del by items.state) index.action)
+  `state
+  ::
     %accept-offer
   ~&  >>>  'accept item'  `state
+  ::
     %reject-offer
   ~&  >>>  'reject item'  `state
   ==

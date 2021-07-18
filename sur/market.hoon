@@ -28,7 +28,7 @@
 +$  server-action
   $%
     [%add-item =item]
-    [%remove-item index=uid] :: item ID. index=(list @) from graph store)
+    [%remove-item =index]
     [%accept-offer offer=uid]
     [%reject-offer offer=uid]
   ==
