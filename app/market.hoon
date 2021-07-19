@@ -67,7 +67,16 @@
   ==
 ++  on-watch  on-watch:default
 ++  on-leave  on-leave:default
-++  on-peek   on-peek:default
+++  on-peek
+  |=  pax=path
+  ^-  (unit (unit cage))
+  ~&  >>>  pax
+  ?+    pax  (on-peek:default pax)
+      [%x %items ~]
+    ``noun+!>(items)
+      [%x %no-result ~]
+    [~ ~]
+  ==
 ++  on-agent  on-agent:default
 ++  on-arvo
   |=  [=wire =sign-arvo]
