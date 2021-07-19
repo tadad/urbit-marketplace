@@ -5,7 +5,11 @@
   $%  state-0
   ==
 ::
-+$  state-0  [%0 items=(map index item)]
++$  state-0
+  $:  %0
+      items=(map index item)
+      offers=(jug index offer)
+  ==
 ::
 +$  card  card:agent:gall
 ::
@@ -24,10 +28,15 @@
   ^-  (quip card _this)
   ~&  >  'on-init'
   ~&  >>>  '%connect Eyre to ~lifecycle'
-  :_  this(state [%0 *(map index item)])
-    :~
-      [%pass /bind %arvo %e %connect [~ /'~lifecycle'] %lifecycle]
+  :-  :~  [%pass /bind %arvo %e %connect [~ /'~lifecycle'] %lifecycle]
+      ==
+  %_  this
+      state
+    :*  %0
+        *(map index item)
+        *(jug index offer)
     ==
+  ==  
 ++  on-save
   ~&  >  'on-save v0'
   !>(state)
@@ -119,8 +128,12 @@
     %leave
   ~&  >>>  'leave'  `state
     %make-offer
-  ~&  >>>  'make-offer'  `state
+  ~&  >>>  'make-offer'
+  =.  offers.state  (~(put ju offers.state) item.offer.action offer.action)
+  `state
     %remove-offer
-  ~&  >>>  'remove offer'  `state
+  ~&  >>>  'remove offer'
+  =.  offers.state  (~(del ju offers.state) item.offer.action offer.action)
+  `state
   ==
 --

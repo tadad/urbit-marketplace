@@ -15,6 +15,13 @@
       image-url='https://example.com/test.jpeg'
       price=`@r`123.123
       time-posted=~1776.7.4
+      offers=*(list offer)
+    ]
+  =/  offer=offer:market
+    [
+      item=~[0]
+      amount=`@r`123.123
+      from=~dachus
     ]
   ?>  =(1 1)
   ~

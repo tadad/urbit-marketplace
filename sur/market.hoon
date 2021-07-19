@@ -12,8 +12,15 @@
     image-url=cord
     price=@r
     time-posted=time
+    :: offers=(list offer)
     :: =signature
     :: reviews=(list post) :: from graph-store
+  ==
++$  offer
+  $:
+    item=index
+    amount=@r
+    from=ship
   ==
 ::
 ::  actions
@@ -22,14 +29,14 @@
   $%
     [%subscribe host=ship]
     [%leave host=ship]
-    [%make-offer item=uid] :: should be an index from graph store. fix later
-    [%remove-offer item=uid]
+    [%make-offer =offer] :: should be an index from graph store. fix later
+    [%remove-offer =offer]
   ==
 +$  server-action
   $%
     [%add-item =item]
     [%remove-item =index]
-    [%accept-offer offer=uid]
-    [%reject-offer offer=uid]
+    [%accept-offer =offer]
+    [%reject-offer =offer]
   ==
 --
