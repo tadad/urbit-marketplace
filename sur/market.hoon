@@ -27,8 +27,8 @@
 ::
 +$  client-action
   $%
-    [%subscribe host=ship]
-    [%leave host=ship]
+    ::  [%subscribe host=ship]
+    ::  [%leave host=ship]
     [%make-offer =offer] :: should be an index from graph store. fix later
     [%remove-offer =offer]
   ==

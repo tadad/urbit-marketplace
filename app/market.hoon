@@ -83,6 +83,8 @@
   ?+    pax  (on-peek:default pax)
       [%x %items ~]
     ``noun+!>(items)
+      [%x %offers ~]
+    ``noun+!>(offers)
       [%x %no-result ~]
     [~ ~]
   ==
@@ -123,16 +125,12 @@
   |=  action=client-action
   ^-  (quip card _state)
   ?-  -.action
-    %subscribe
-  ~&  >>>  'subscribe'  `state
-    %leave
-  ~&  >>>  'leave'  `state
     %make-offer
   ~&  >>>  'make-offer'
   =.  offers.state  (~(put ju offers.state) item.offer.action offer.action)
   `state
     %remove-offer
-  ~&  >>>  'remove offer'
+  ~&  >>>  'remove-offer'
   =.  offers.state  (~(del ju offers.state) item.offer.action offer.action)
   `state
   ==
