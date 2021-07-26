@@ -27,8 +27,9 @@
 ++  on-init
   ^-  (quip card _this)
   ~&  >  'on-init'
-  ~&  >>>  '%connect Eyre to ~lifecycle'
-  :-  :~  [%pass /bind %arvo %e %connect [~ /'~lifecycle'] %lifecycle]
+  ~&  >>>  '%connect Eyre to ~market'
+  =/  filea  [%file-server-action !>([%serve-dir /'~market' /app/market %.y %.n])]
+  :-  :~  [%pass /srv %agent [our.bowl %file-server] %poke filea]
       ==
   %_  this
       state

@@ -11,7 +11,7 @@
       seller=~zod
       index=~[1 1 1]
       name='test item'
-      description=[[%text 'test description 123'] ~]
+      description='description'  ::  not doing (list content) anymore ::[[%text 'test description 123'] ~]
       image-url='https://example.com/test.jpeg'
       price=`@r`123.123
       time-posted=~1776.7.4

@@ -8,7 +8,7 @@
     seller=ship
     =index
     name=cord
-    description=(list content)
+    description=cord  ::(list content) :: mainly because I don't want to deal with graphstore right now
     image-url=cord
     price=@r
     time-posted=time
